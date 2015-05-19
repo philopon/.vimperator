@@ -1,0 +1,73 @@
+"3.7 (created: 2013/04/03 18:20:07)
+
+colorscheme vimpwhite
+
+set editor=emacsclient\ -n
+set focuscontent=true
+set gui=none
+set hintchars=asdfghjkl;
+set hinttimeout=500
+set newtab=addons,downloads
+set scroll=15
+set toolbars=none,tabs
+
+set! browser.sessionstore.max_tabs_undo=100
+set! browser.sessionhistory.max_entries=10
+set! browser.cache.memory.capacity=-1
+set! general.useragent.locale=ja-JP
+
+noremap j <C-d>
+noremap k <C-u>
+noremap l <C-n>
+noremap h <C-p>
+noremap <C-h> h
+noremap <C-l> l
+noremap <S-h> :back<CR>
+noremap <S-l> :forward<CR>
+noremap U :undo<SPACE>
+noremap gt :tabgroups switch 
+noremap C :clearly<CR>
+cnoremap <C-j> <NOP>
+noremap ; :
+noremap : ;
+
+" コマンド行でIMEをoffに
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+" UraSunday
+style -name hide-urasumday-menu http://urasunday.com/* #grobalMenuWrapper {visibility: hidden;}
+autocmd LocationChange .* styledisable -name hide-urasumday-menu
+autocmd LocationChange http://urasunday.com/.+/comic.* styleenable -name hide-urasumday-menu
+
+javascript <<EOM
+  var btn = document.getElementById('notification-popup-box');
+  document.getElementById('liberator-statusline').appendChild(btn);
+EOM
+
+style chrome://* <<EOM
+  #urlbar {
+    width:      0px    !important;
+    height:     0px    !important;
+    overflow:   hidden !important;
+    visibility: hidden !important;
+}
+EOM
+
+" copy.js
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
+  { label: 'markdown',       value: '[%TITLE%](%URL%)'},
+  { label: 'pandoc-ref',     value: '[]: %URL% "%TITLE%"'}
+];
+EOM
+
+command! zotero javascript ZoteroOverlay.toggleDisplay()
+
+ignorekeys clear
+ignorekeys add mail\\.google\\.com -except h,l,<C-n>,<C-p>,;,:,d
+ignorekeys add inbox\\.google\\.com -except h,l,<C-n>,<C-p>,;,:,d
+
+source! /Users/philopon/.vimperatorrc.local
+
+" vim: set ft=vimperator:
