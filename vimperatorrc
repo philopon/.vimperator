@@ -28,8 +28,6 @@ noremap U :undo<SPACE>
 noremap gt :tabgroups switch 
 noremap C :clearly<CR>
 cnoremap <C-j> <NOP>
-noremap ; :
-noremap : ;
 
 " コマンド行でIMEをoffに
 style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
@@ -67,6 +65,7 @@ command! zotero javascript ZoteroOverlay.toggleDisplay()
 ignorekeys clear
 ignorekeys add mail\\.google\\.com -except h,l,<C-n>,<C-p>,;,:,d
 ignorekeys add inbox\\.google\\.com -except h,l,<C-n>,<C-p>,;,:,d
+ignorekeys add localhost:[0-9]+/notebooks -except h,l,<C-n>,<C-p>,;,:,d
 
 source! /Users/philopon/.vimperatorrc.local
 
