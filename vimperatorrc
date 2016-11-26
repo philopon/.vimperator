@@ -15,6 +15,7 @@ set! browser.sessionstore.max_tabs_undo=100
 set! browser.sessionhistory.max_entries=10
 set! browser.cache.memory.capacity=-1
 set! general.useragent.locale=ja-JP
+set! browser.tabs.closeWindowWithLastTab=false
 
 noremap j <C-d>
 noremap k <C-u>
